@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buzz Meet</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-left">
+          <div class="logo">
+            <i class="fas fa-video"></i>
+            <span>Buzz Meet</span>
+          </div>
+        </div>
+        <div class="header-center">
+          <div class="date-time">
+            <i class="fas fa-sun"></i>
+            <span id="current-date"></span>
+          </div>
+        </div>
+        <div class="header-right">
+          <span class="trial-notice">Your trial expires in 14 days</span>
+          <button class="btn-buy-now">BUY NOW</button>
+          <div class="department-dropdown">
+            <span>My Department</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="user-profile">
+            <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop&crop=face" alt="User" />
+          </div>
+          <button class="apps-menu">
+            <i class="fas fa-th"></i>
+          </button>
+        </div>
+      </header>
+
+      <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <nav class="nav-menu">
+            <div class="nav-item active" data-tab="home">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </div>
+            <div class="nav-item" data-tab="meetings">
+              <i class="fas fa-video"></i>
+              <span>Meetings</span>
+            </div>
+            <div class="nav-item" data-tab="webinars">
+              <i class="fas fa-broadcast-tower"></i>
+              <span>Webinars</span>
+            </div>
+            <div class="nav-item" data-tab="calendar">
+              <i class="fas fa-calendar"></i>
+              <span>Calendar</span>
+            </div>
+            <div class="nav-item" data-tab="rooms">
+              <i class="fas fa-door-open"></i>
+              <span>Rooms</span>
+            </div>
+            <div class="nav-item" data-tab="settings">
+              <i class="fas fa-cog"></i>
+              <span>Settings</span>
+            </div>
+            <div class="nav-item" data-tab="more">
+              <i class="fas fa-ellipsis-h"></i>
+              <span>More</span>
+            </div>
+          </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+          <div class="content-section" id="home">
+            <div class="meeting-options">
+              <div class="meeting-card">
+                <h2>Meeting</h2>
+                <p>Create a meeting, invite participants, and interact through screen sharing and audio/video conferencing.</p>
+                <div class="card-actions">
+                  <button class="btn-secondary" id="meet-now">Meet Now</button>
+                  <button class="btn-primary" id="schedule-meeting">Schedule</button>
+                </div>
+              </div>
+
+              <div class="meeting-card">
+                <h2>Webinar</h2>
+                <p>Organize a webinar, invite your audience to register, and engage with attendees by sharing your screen.</p>
+                <div class="card-actions">
+                  <button class="btn-secondary" id="broadcast-now">Broadcast Now</button>
+                  <button class="btn-primary" id="schedule-webinar">Schedule</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="personal-room">
+              <h2>Personal Room</h2>
+              <div class="room-info">
+                <div class="room-details">
+                  <p>A meeting room you can use anytime. <a href="#" class="link">View details</a></p>
+                </div>
+                <div class="room-actions">
+                  <div class="room-url">
+                    <span>https://meet.buzzmeet.com/personal-room-xyz</span>
+                    <button class="copy-btn" id="copy-url">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                  </div>
+                  <button class="btn-primary" id="start-meeting">Start Meeting</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Other Sections -->
+          <div class="content-section hidden" id="meetings">
+            <h1>Meetings</h1>
+            <div class="upcoming-meetings">
+              <div class="meeting-item">
+                <h3>Team Standup</h3>
+                <p>Today at 3:00 PM</p>
+                <button class="btn-primary">Join</button>
+              </div>
+              <div class="meeting-item">
+                <h3>Project Review</h3>
+                <p>Tomorrow at 10:00 AM</p>
+                <button class="btn-secondary">Edit</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section hidden" id="webinars">
+            <h1>Webinars</h1>
+            <div class="webinar-list">
+              <div class="webinar-item">
+                <h3>Product Launch Event</h3>
+                <p>Scheduled for next week</p>
+                <button class="btn-primary">Manage</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section hidden" id="calendar">
+            <h1>Calendar</h1>
+            <div class="calendar-view">
+              <p>Calendar integration coming soon...</p>
+            </div>
+          </div>
+
+          <div class="content-section hidden" id="rooms">
+            <h1>Rooms</h1>
+            <div class="rooms-list">
+              <p>Manage your meeting rooms here...</p>
+            </div>
+          </div>
+
+          <div class="content-section hidden" id="settings">
+            <h1>Settings</h1>
+            <div class="settings-panel">
+              <div class="setting-group">
+                <h3>Audio & Video</h3>
+                <label class="toggle">
+                  <input type="checkbox" checked>
+                  <span>Enable HD video</span>
+                </label>
+                <label class="toggle">
+                  <input type="checkbox">
+                  <span>Mute on join</span>
+                </label>
+              </div>
+              <div class="setting-group">
+                <h3>Notifications</h3>
+                <label class="toggle">
+                  <input type="checkbox" checked>
+                  <span>Meeting reminders</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section hidden" id="more">
+            <h1>More Options</h1>
+            <div class="more-options">
+              <div class="option-item">
+                <i class="fas fa-download"></i>
+                <span>Download Desktop App</span>
+              </div>
+              <div class="option-item">
+                <i class="fas fa-question-circle"></i>
+                <span>Help & Support</span>
+              </div>
+              <div class="option-item">
+                <i class="fas fa-info-circle"></i>
+                <span>About Buzz Meet</span>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- Modals -->
+      <div id="meeting-modal" class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Schedule Meeting</h3>
+            <button class="close-modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form id="meeting-form">
+              <div class="form-group">
+                <label>Meeting Title</label>
+                <input type="text" placeholder="Enter meeting title" required>
+              </div>
+              <div class="form-group">
+                <label>Date & Time</label>
+                <input type="datetime-local" required>
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea placeholder="Meeting description (optional)"></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="button" class="btn-secondary cancel-btn">Cancel</button>
+                <button type="submit" class="btn-primary">Schedule Meeting</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
