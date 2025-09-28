@@ -1,7 +1,47 @@
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
+  initializeTheme();
   initializeApp();
 });
+
+// Theme Management
+function initializeTheme() {
+  // Set dark theme as default
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+  
+  // Setup theme toggle
+  setupThemeToggle();
+}
+
+function setupThemeToggle() {
+  const themeToggle = document.getElementById('theme-toggle');
+  if (!themeToggle) return;
+  
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+    
+    showToast(`Switched to ${newTheme} theme`, 'info');
+  });
+}
+
+function updateThemeIcon(theme) {
+  const themeToggle = document.getElementById('theme-toggle');
+  if (!themeToggle) return;
+  
+  const icon = themeToggle.querySelector('i');
+  if (theme === 'dark') {
+    icon.className = 'fas fa-sun';
+  } else {
+    icon.className = 'fas fa-moon';
+  }
+}
 
 function initializeApp() {
   updateDateTime();
@@ -10,6 +50,7 @@ function initializeApp() {
   setupNavigation();
   setupEventListeners();
   setupModalHandlers();
+  setupMobileMenu();
   
   // Add fade-in animation to main content
   document.querySelector('.main-content').classList.add('fade-in');
@@ -111,6 +152,48 @@ function setupEventListeners() {
   document.querySelector('.apps-menu')?.addEventListener('click', () => {
     showToast('Apps menu coming soon...', 'info');
   });
+}
+
+// Mobile menu functionality
+function setupMobileMenu() {
+  // Add mobile menu button to header if it doesn't exist
+  const headerLeft = document.querySelector('.header-left');
+  if (headerLeft && !document.querySelector('.mobile-menu-btn')) {
+    const menuBtn = document.createElement('button');
+    menuBtn.className = 'mobile-menu-btn';
+    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    headerLeft.insertBefore(menuBtn, headerLeft.firstChild);
+    
+    // Add event listener
+    menuBtn.addEventListener('click', toggleMobileMenu);
+  }
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    const sidebar = document.querySelector('.sidebar');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    
+    if (sidebar && sidebar.classList.contains('open') && 
+        !sidebar.contains(e.target) && 
+        !menuBtn.contains(e.target)) {
+      sidebar.classList.remove('open');
+    }
+  });
+  
+  // Close menu when selecting nav item on mobile
+  const navItems = document.querySelectorAll('.nav-item');
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        document.querySelector('.sidebar').classList.remove('open');
+      }
+    });
+  });
+}
+
+function toggleMobileMenu() {
+  const sidebar = document.querySelector('.sidebar');
+  sidebar.classList.toggle('open');
 }
 
 // Modal handling
@@ -360,5 +443,28 @@ window.addEventListener('error', (e) => {
 // Initialize additional features
 setTimeout(() => {
   setupSettingsHandlers();
-  setupMobileSidebar();
 }, 1000);
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) {
+    document.querySelector('.sidebar').classList.remove('open');
+  }
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  // Toggle theme with Ctrl/Cmd + T
+  if ((e.ctrlKey || e.metaKey) && e.key === 't') {
+    e.preventDefault();
+    document.getElementById('theme-toggle')?.click();
+  }
+  
+  // Toggle mobile menu with Escape
+  if (e.key === 'Escape') {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar.classList.contains('open')) {
+      sidebar.classList.remove('open');
+    }
+  }
+});
