@@ -107,6 +107,47 @@ document.querySelector('.microsoft-btn').addEventListener('click', () => {
   showToast('Microsoft login coming soon...', 'info');
 });
 
+// Sign up handlers
+document.querySelector('.email-signup').addEventListener('click', () => {
+  showToast('Email signup coming soon...', 'info');
+});
+
+document.querySelector('.phone-signup').addEventListener('click', () => {
+  showToast('Phone signup coming soon...', 'info');
+});
+
+document.querySelector('.google-signup').addEventListener('click', () => {
+  showToast('Google signup coming soon...', 'info');
+});
+
+document.querySelector('.apple-signup').addEventListener('click', () => {
+  showToast('Apple signup coming soon...', 'info');
+});
+
+document.querySelector('.facebook-signup').addEventListener('click', () => {
+  showToast('Facebook signup coming soon...', 'info');
+});
+
+document.querySelector('.twitter-signup').addEventListener('click', () => {
+  showToast('X (Twitter) signup coming soon...', 'info');
+});
+
+document.querySelector('.linkedin-signup').addEventListener('click', () => {
+  showToast('LinkedIn signup coming soon...', 'info');
+});
+
+document.querySelector('.yahoo-signup').addEventListener('click', () => {
+  showToast('Yahoo signup coming soon...', 'info');
+});
+
+document.querySelector('.microsoft-signup').addEventListener('click', () => {
+  showToast('Microsoft signup coming soon...', 'info');
+});
+
+document.querySelector('.github-signup').addEventListener('click', () => {
+  showToast('GitHub signup coming soon...', 'info');
+});
+
 // Toast notification system
 function showToast(message, type = 'info') {
   // Remove existing toast
